@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — reverse-engineered from alethia.earth (Framer)
+   See BUILD-PROMPT.md sections 2–4 for full rationale.
+   ============================================================ */
+
+:root {
+  /* Section 3 — color system (exact hex values, never invent new ones) */
+  --color-primary: #c6f19d; /* lime accent — tags/CTAs/data highlights only, ~2% of pixels */
+  --color-link: #0000ee; /* pure link blue, text links only */
+  --color-bg-dark: #0f1f10; /* near-black forest green — dominant page bg */
+  --color-bg-deep: #200f85; /* deep blue/purple — occasional section variation */
+  --color-ink: #000000;
+  --color-offwhite: #f5f4f2;
+  --color-paper: #ffffff;
+  --color-neutral-dark: #0f0f0f;
+  --color-neutral-mid: #828282;
+  --color-accent-cyan: #99eeff;
+  --color-tag-fill: #d5eebc;
+}
+
+@theme inline {
+  /* Fonts — Geist / Geist Mono are the entire typographic signature */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Colors as Tailwind theme tokens (bg-*, text-*, border-* utilities) */
+  --color-primary: var(--color-primary);
+  --color-link: var(--color-link);
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-deep: var(--color-bg-deep);
+  --color-ink: var(--color-ink);
+  --color-offwhite: var(--color-offwhite);
+  --color-paper: var(--color-paper);
+  --color-neutral-dark: var(--color-neutral-dark);
+  --color-neutral-mid: var(--color-neutral-mid);
+  --color-accent-cyan: var(--color-accent-cyan);
+  --color-tag-fill: var(--color-tag-fill);
+
+  /* Section 4 — radius scale: 3, 6, 12, 16, 24, 36px (+ default rounded-full = pill) */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 36px;
+
+  /* Section 2 — type scale: exact px pairs, weight, line-height, tracking baked
+     into each named token so `text-display`, `text-h2` etc. carry everything. */
+  --text-display: 4.5rem; /* 72px */
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -3.6px;
+  --text-display--font-weight: 500;
+
+  --text-h2-lg: 4rem; /* 64px */
+  --text-h2-lg--line-height: 0.95;
+  --text-h2-lg--letter-spacing: -3.2px;
+  --text-h2-lg--font-weight: 600;
+
+  --text-h2: 3.5rem; /* 56px */
+  --text-h2--line-height: 0.95;
+  --text-h2--letter-spacing: -2.8px;
+  --text-h2--font-weight: 500;
+
+  --text-lead: 2.75rem; /* 44px */
+  --text-lead--line-height: 0.95;
+  --text-lead--letter-spacing: -2.2px;
+  --text-lead--font-weight: 500;
+
+  --text-h3: 2.5rem; /* 40px */
+  --text-h3--line-height: 0.95;
+  --text-h3--letter-spacing: -1.2px;
+  --text-h3--font-weight: 500;
+
+  --text-h5: 2rem; /* 32px */
+  --text-h5--line-height: 0.95;
+  --text-h5--letter-spacing: -0.64px;
+  --text-h5--font-weight: 500;
+
+  --text-body-lg: 1.5rem; /* 24px */
+  --text-body-lg--line-height: 1;
+  --text-body-lg--letter-spacing: -0.96px;
+  --text-body-lg--font-weight: 400;
+
+  --text-body: 1.25rem; /* 20px */
+  --text-body--line-height: 1.2;
+  --text-body--letter-spacing: -0.4px;
+  --text-body--font-weight: 400;
+
+  --text-body-em: 1.125rem; /* 18px */
+  --text-body-em--line-height: 0.9;
+  --text-body-em--font-weight: 500;
+
+  --text-small: 0.875rem; /* 14px — the dominant body-copy size */
+  --text-small--line-height: 1.2;
+  --text-small--letter-spacing: -0.42px;
+  --text-small--font-weight: 400;
+
+  --text-label: 0.9375rem; /* 15px */
+  --text-label--line-height: 0.9;
+  --text-label--font-weight: 600;
+
+  --text-micro: 0.75rem; /* 12px */
+  --text-micro--font-weight: 400;
+
+  --text-tiny: 0.6713rem; /* 10.74px */
+  --text-tiny--line-height: 1.1;
+  --text-tiny--letter-spacing: -0.32px;
+  --text-tiny--font-weight: 500;
+}
+
+/* Hard rule 6 — respect prefers-reduced-motion at the CSS layer too,
+   as a backstop to the MotionConfig reducedMotion="user" setting in layout.tsx */
+@media (prefers-color-scheme: no-preference) {
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg-dark);
+  color: var(--color-paper);
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Hard rule 4 — flat material language: never re-introduce shadows globally */
+img,
+button {
+  box-shadow: none;
+}
